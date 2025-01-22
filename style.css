@@ -122,7 +122,12 @@ body {
 .calculator_type_main {
     display: flex;
     flex-flow: row;
-    justify-content: space-around;
+    justify-content: space-evenly;
+}
+
+.calculator_block {
+  text-align: center;
+  font-size: 1.1rem;
 }
 
 .calculator_type {
@@ -138,8 +143,11 @@ body {
     background-repeat: no-repeat;
 }
 
+.selected_type {
+  border: 1px solid red;
+}
+
 #meat {
-    border: 4px solid #36599A;
     background-image: url(/img2025/meat.png);
 }
 
@@ -163,10 +171,22 @@ body {
     text-align: center;
     font-size: 2rem;
     margin-top: 3rem;
-    margin-bottom: 3rem;
+    margin-bottom: 1rem;
     color: #AC2323;
     font-style: italic;
     font-family: sans-serif;
+}
+
+hr.between_h2_and_h3 {
+    width: 13rem;
+}
+
+.calculator_h3 {
+    text-align: center;
+    font-family: sans-serif;
+    font-weight: normal;
+    font-size: 1.3em;
+    margin-top: 0.9em;
 }
 
 .calculator_label_1 {

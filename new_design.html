@@ -11,14 +11,36 @@
     <div>
         <div class="change_calculator_block">
             <h2 class="calculator_h2">Калькулятор замен продуктов</h2>
+            <hr class="between_h2_and_h3" />
+            <h3 class="calculator_h3">От Нутрициолога Екатерины Войтенко</h3>
             <div class="calculator_result"></div>
             <div class="change_calculator">
                 <div class="calculator_type_main">
-                    <div class="calculator_type" id="meat"></div>
-                    <div class="calculator_type" id="seafood"></div>
-                    <div class="calculator_type" id="cereal"></div>
-                    <div class="calculator_type" id="milk"></div>
-                    <div class="calculator_type" id="cheese"></div>
+                    <div class="calculator_block">
+                        <div class="calculator_type selected_type" id="meat"></div>
+                        <div>Мясо</div>
+                    </div>
+                    
+                    <div class="calculator_block">
+                        <div class="calculator_type" id="seafood"></div>
+                        <div>Рыба</div>
+                    </div>
+                    
+                    <div class="calculator_block">
+                        <div class="calculator_type" id="cereal"></div>
+                        <div>Крупа</div>
+                    </div>
+                    
+                    
+                    <div class="calculator_block">
+                        <div class="calculator_type" id="milk"></div>
+                        <div>Молочный<br>продукт</div>
+                    </div>
+
+                    <div class="calculator_block">                    
+                        <div class="calculator_type" id="cheese"></div>
+                        <div>Сыр</div>
+                    </div>
                 </div>
                 <p class="calculator_label_1">Выберите мясо, указанное в рецепте<br>и укажите вес в гр.</p>
                 <p class="calculator_label_2">Выберите мясо,<br>на которое хотите поменять</p>
@@ -225,9 +247,12 @@
         $(function () {
             function chooseProduct() {
                 var idProduct = this.id;
+                
+                $(".calculator_type").removeClass('selected_type');
+                
                 if (idProduct == "meat") {
-                    $(".calculator_type").css({ "border": "1px solid grey", });
-                    $("#meat").css({ "border": "4px solid #36599A" });
+                    
+                    $("#meat").addClass('selected_type');
                     $(".calculator_label_1").html("Выберите мясо, указанное в рецепте<br>и укажите вес в гр.");
                     $(".calculator_label_2").html("Выберите мясо,<br>на которое хотите поменять");
                     $('.select_first').hide();
@@ -235,8 +260,7 @@
                     $('#meat_select_1').show();
                     $('#meat_select_2').show();
                 } else if (idProduct == "seafood") {
-                    $(".calculator_type").css({ "border": "1px solid grey", });
-                    $("#seafood").css({ "border": "4px solid #36599A" });
+                    $("#seafood").addClass('selected_type');
                     $(".calculator_label_1").html("Выберите мясо, указанное в рецепте<br>и укажите вес в гр.");
                     $(".calculator_label_2").html("Выберите морепродукты,<br>на которые хотите поменять");
                     $('.select_first').hide();
@@ -244,8 +268,8 @@
                     $('#seafood_select_1').show();
                     $('#seafood_select_2').show();
                 } else if (idProduct == "cereal") {
-                    $(".calculator_type").css({ "border": "1px solid grey", });
-                    $("#cereal").css({ "border": "4px solid #36599A" });
+                    
+                    $("#cereal").addClass('selected_type');
                     $(".calculator_label_1").html("Выберите крупу, указанную в рецепте<br>и укажите вес в гр.");
                     $(".calculator_label_2").html("Выберите крупу,<br>на которую хотите поменять");
                     $('.select_first').hide();
@@ -253,8 +277,8 @@
                     $('#cereal_select_1').show();
                     $('#cereal_select_2').show();
                 } else if (idProduct == "milk") {
-                    $(".calculator_type").css({ "border": "1px solid grey", });
-                    $("#milk").css({ "border": "4px solid #36599A" });
+                    
+                    $("#milk").addClass('selected_type');
                     $(".calculator_label_1").html("Выберите молоко, указанное в рецепте,<br>и укажите вес в гр.");
                     $(".calculator_label_2").html("Выберите молочный продукт,<br>на который меняете");
                     $('.select_first').hide();
@@ -262,8 +286,8 @@
                     $('#milk_select_1').show();
                     $('#milk_select_2').show();
                 } else if (idProduct == "cheese") {
-                    $(".calculator_type").css({ "border": "1px solid grey", });
-                    $("#cheese").css({ "border": "4px solid #36599A" });
+                    
+                    $("#cheese").addClass('selected_type');
                     $(".calculator_label_1").html("Выберите сыр, указанный в рецепте,<br>и укажите вес в гр.");
                     $(".calculator_label_2").html("Выберите сыр,<br>на который хотите поменять");
                     $('.select_first').hide();
