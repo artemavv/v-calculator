@@ -17,28 +17,38 @@
             <div class="change_calculator">
                 <div class="calculator_type_main">
                     <div class="calculator_block">
-                        <div class="calculator_type selected_type" id="meat"></div>
+                        <div class="calculator_type selected_type" id="meat"
+                            data-label-1="Выберите мясо, указанное в рецепте<br>и укажите вес в гр."
+                            data-label-2="Выберите мясо,<br>на которое хотите поменять"></div>
                         <div>Мясо</div>
                     </div>
                     
                     <div class="calculator_block">
-                        <div class="calculator_type" id="seafood"></div>
+                        <div class="calculator_type" id="seafood"
+                            data-label-1="Выберите морепродукт, указанный в рецепте<br>и укажите вес в гр."
+                            data-label-2="Выберите морепродукт,<br>на который хотите поменять"></div>
                         <div>Рыба</div>
                     </div>
                     
                     <div class="calculator_block">
-                        <div class="calculator_type" id="cereal"></div>
+                        <div class="calculator_type" id="cereal"
+                            data-label-1="Выберите крупу, указанную в рецепте<br>и укажите вес в гр."
+                            data-label-2="Выберите крупу,<br>на которую хотите поменять"></div>
                         <div>Крупа</div>
                     </div>
                     
                     
                     <div class="calculator_block">
-                        <div class="calculator_type" id="milk"></div>
+                        <div class="calculator_type" id="milk"
+                            data-label-1="Выберите молочный продукт, указанный в рецепте<br>и укажите вес в гр."
+                            data-label-2="Выберите молочный продукт,<br>на который хотите поменять"></div>
                         <div>Молочный<br>продукт</div>
                     </div>
 
                     <div class="calculator_block">                    
-                        <div class="calculator_type" id="cheese"></div>
+                        <div class="calculator_type" id="cheese"
+                            data-label-1="Выберите сыр, указанный в рецепте<br>и укажите вес в гр."
+                            data-label-2="Выберите сыр,<br>на который хотите поменять"></div>
                         <div>Сыр</div>
                     </div>
                 </div>
@@ -245,56 +255,34 @@
         });
 
         $(function () {
+            
+            const types = [ 'meat', 'seafood', 'cereal', 'milk', 'cheese' ];
+            
             function chooseProduct() {
                 var idProduct = this.id;
                 
                 $(".calculator_type").removeClass('selected_type');
                 
-                if (idProduct == "meat") {
+                if ( types.includes( idProduct ) ) {
                     
-                    $("#meat").addClass('selected_type');
-                    $(".calculator_label_1").html("Выберите мясо, указанное в рецепте<br>и укажите вес в гр.");
-                    $(".calculator_label_2").html("Выберите мясо,<br>на которое хотите поменять");
-                    $('.select_first').hide();
-                    $('.select_second').hide();
-                    $('#meat_select_1').show();
-                    $('#meat_select_2').show();
-                } else if (idProduct == "seafood") {
-                    $("#seafood").addClass('selected_type');
-                    $(".calculator_label_1").html("Выберите мясо, указанное в рецепте<br>и укажите вес в гр.");
-                    $(".calculator_label_2").html("Выберите морепродукты,<br>на которые хотите поменять");
-                    $('.select_first').hide();
-                    $('.select_second').hide();
-                    $('#seafood_select_1').show();
-                    $('#seafood_select_2').show();
-                } else if (idProduct == "cereal") {
+                    $currentType = $( "#" + idProduct );
+                    $currentTypeSelect1 = $( "#" + idProduct + "_select_1" );
+                    $currentTypeSelect2 = $( "#" + idProduct + "_select_2" );
                     
-                    $("#cereal").addClass('selected_type');
-                    $(".calculator_label_1").html("Выберите крупу, указанную в рецепте<br>и укажите вес в гр.");
-                    $(".calculator_label_2").html("Выберите крупу,<br>на которую хотите поменять");
-                    $('.select_first').hide();
-                    $('.select_second').hide();
-                    $('#cereal_select_1').show();
-                    $('#cereal_select_2').show();
-                } else if (idProduct == "milk") {
+                    $currentType.addClass('selected_type');
                     
-                    $("#milk").addClass('selected_type');
-                    $(".calculator_label_1").html("Выберите молоко, указанное в рецепте,<br>и укажите вес в гр.");
-                    $(".calculator_label_2").html("Выберите молочный продукт,<br>на который меняете");
-                    $('.select_first').hide();
-                    $('.select_second').hide();
-                    $('#milk_select_1').show();
-                    $('#milk_select_2').show();
-                } else if (idProduct == "cheese") {
+                    const label_1 = $currentType.data('label-1');
+                    const label_2 = $currentType.data('label-2');
                     
-                    $("#cheese").addClass('selected_type');
-                    $(".calculator_label_1").html("Выберите сыр, указанный в рецепте,<br>и укажите вес в гр.");
-                    $(".calculator_label_2").html("Выберите сыр,<br>на который хотите поменять");
+                    $(".calculator_label_1").html(label_1);
+                    $(".calculator_label_2").html(label_2);
+                    
                     $('.select_first').hide();
                     $('.select_second').hide();
-                    $('#cheese_select_1').show();
-                    $('#cheese_select_2').show();
-                };
+                    
+                    $currentTypeSelect1.show();
+                    $currentTypeSelect2.show();
+                }
             };
             $(".calculator_type").click(chooseProduct);
         });
