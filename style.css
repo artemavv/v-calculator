@@ -51,26 +51,16 @@ select {
 
 
 #primary {
-    width: 720px;
-    margin: auto;
-    background-color: white;
-    padding-left: 0px;
-    padding-right: 0px;
-    padding-bottom: 23px;
-    margin-bottom: -60px;
-    background-color: #fff;
+
 }
 
 body {
-   width: 720px;
    margin: auto;
    background-color: white;
    padding-left: 0px;
    padding-right: 0px;
-   padding-bottom: 23px;
-   margin-bottom: -60px;
+   padding-bottom: 2rem;
    background-color: #fff;
-   min-height: 1250px;
 }
 
 #page {
@@ -107,27 +97,26 @@ body {
     background-color: white;
     padding-bottom: 20px;
     padding-top: 20px;
+    max-width: 720px;
+    margin: 0 auto;
 }
 
 .change_calculator {
     margin: 0 auto;
     border: 1px solid #d6d6d6;
-  /*  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;  */
     border-radius: 6px;
-    width: 700px;
-    min-height: 460px;
-    background-color: white;
 }
 
 .calculator_type_main {
     display: flex;
-    flex-flow: row;
+    flex-flow: row wrap;
     justify-content: space-evenly;
 }
 
 .calculator_block {
   text-align: center;
   font-size: 1.1rem;
+  padding: 10px;
 }
 
 .calculator_type {
@@ -167,6 +156,17 @@ body {
     background-image: url(/img2025/cheese.png);
 }
 
+.inputs_container {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-evenly;
+}
+
+.inputs_container > div.c {
+  margin: 1rem;
+  text-align: center;
+}
+
 .calculator_h2 {
     text-align: center;
     font-size: 2rem;
@@ -189,22 +189,12 @@ hr.between_h2_and_h3 {
     margin-top: 0.9em;
 }
 
-.calculator_label_1 {
-    clear: both;
-    margin-left: 15px;
-    width: 300px;
+.calculator_label_1, .calculator_label_2 {
+    margin-top:1rem;
+    margin-bottom:1rem;
+    font-size: 1.3rem;
+    width: 85%;
     text-align: center;
-    margin-bottom: 20px;
-    font-size: 24px;
-}
-
-.calculator_label_2 {
-    position: absolute;
-    width: 300px;
-    margin-left: 400px;
-    margin-top: -108px;
-    text-align: center;
-    font-size: 24px;
 }
 
 .calculator_label p {
@@ -212,11 +202,9 @@ hr.between_h2_and_h3 {
     font-size: 20px;
 }
 
-.select_first {
-    width: 180px;
-    margin-left: 20px;
-    display: none;
-    font-size: 32px;
+.select_first {    
+    font-size: 1rem;
+    margin-left: 2rem;
 }
 
 #meat_select_1 {
@@ -224,16 +212,20 @@ hr.between_h2_and_h3 {
 }
 
 #select_weight {
-    width: 80px;
-    margin-left: 70px;
-    font-size: 32px;
+    width: 20%;
+    font-size: 1rem;
+    margin-left: 1rem;
+    border-color: #aaa;
+    border-width: 1px;
+    border-radius: 3px;
+    border-style: solid;
+    height: 24px;
+    position: relative;
+    top: 1px;
 }
 
 .select_second {
-    margin-left: 45px;
-    display: none;
-    width: 240px;
-    font-size: 32px;
+    font-size: 1rem;
 }
 
 #meat_select_2 {
@@ -242,30 +234,39 @@ hr.between_h2_and_h3 {
 
 .calculator_result {
     clear: both;
-    font-size: 36px;
     text-align: center;
     margin-left: 10px;
-    width: 700px;
-    height: 360px;
+    min-height: 360px;
     border: 1px solid #d6d6d6;
     border-radius: 6px;
     display: none;
     padding-top: 85px;
     background-color: white;
+    
+    font-size: 1.2rem;
+}
+
+.calculator_result_text {
+    line-height: 3rem;
 }
 
 .calculator_submit_button {
-    padding: 10px 50px;
-    background-color: #36599A;
+  
+    padding: 0.5rem;
+    background-color: #6E1212;
     max-width: 240px;
+
     color: #fff;
-    font-size: 32px;
-    font-family: kelson;
+    font-size: 1.5rem;
+
     cursor: pointer;
-    border-radius: 3px;
+    border-radius: 40px;
     text-align: center;
+
     margin: 0 auto;
-    margin-top: -100px;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+
 }
 
 .calculator_submit_button:hover {
@@ -274,22 +275,23 @@ hr.between_h2_and_h3 {
 
 #new_result_button {
     display: none;
-    margin-top: -100px;
     width: 270px;
 }
 
+.source_value, .target_value {
+    font-weight: bold;
+}
+
 .product_background {
-    background-color: #fff3cd;
-    border-radius: 6px;
+    background-color: #eee;
     padding: 0px 20px 5px 20px;
+    text-transform: lowercase;
 }
 
 .block_smm {
     display: flex;
     margin: 0 auto;
     margin-top: 70px;
-/*         gap: 15px; */
-    width: 700px;
     justify-content: space-around;
 }
 
