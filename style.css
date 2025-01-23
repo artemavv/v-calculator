@@ -190,7 +190,7 @@ hr.between_h2_and_h3 {
 }
 
 .calculator_submit_button:hover {
-    color: #000;
+    color: #efeb25;
 }
 
 #new_result_button {
@@ -251,7 +251,7 @@ hr.between_h2_and_h3 {
   }
 
   .inputs_container > div.c {
-    width: 100%;
+    width: 90%;
     padding-top: 20px;
   }
 
@@ -259,5 +259,13 @@ hr.between_h2_and_h3 {
   .calculator_label_1, .calculator_label_2 {
     width: 100%;
     min-height: 2rem;
+  }
+  
+  #new_result_button {
+    max-width: 80%;
+  }
+  
+  #result_button {
+    max-width: 80%;
   }
 }
