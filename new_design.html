@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Онлайн калькулятор замен</title>
-    <script src="/src/jquery.min.js"></script>
+    <script src="src/jquery.min.js"></script>
     
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
@@ -109,13 +109,12 @@
         </div>
     </div>
     
-    <!--
     <div class="block_smm">
         <a href="https://t.me/voitenko2024" target="_blank" class="link_smm"><img src="/src/main_tg.png" alt="link telegram" class="link_img"></a>
         <a href="https://vk.com/voitenko_cats" target="_blank" class="link_smm"><img src="/src/main_vk.png" alt="link vk" class="link_img"></a>
         <a href="https://www.instagram.com/voitenko_catttsss/" target="_blank" class="link_smm"><img src="/src/main_instagram.png" alt="link instagram" class="link_img"></a>
     </div>
--->
+    
      <script>
         $('#source_select, #target_select').select2({
     width: 'resolve',
@@ -133,8 +132,6 @@
                 textSelectFirst =  $('#source_select').find(":selected").text();
                 textSelectSecond = $('#target_select').find(":selected").text();
                 
-                console.log( valueSelectFirst, valueSelectSecond);
-                
                 valueSelectFirst = parseFloat(valueSelectFirst);
                 valueSelectSecond = parseFloat(valueSelectSecond);
                 var weightCalc = parseFloat($("#select_weight").val());
@@ -142,16 +139,15 @@
                     weightCalc = parseFloat(0);
                 };
 
-
-
                 var resultValue = weightCalc * valueSelectSecond / valueSelectFirst;
-                //  resultValue = resultValue.toFixed();
+                
                 resultValue = parseFloat(resultValue);
                 resultValue = Math.round(resultValue);
 
                 var resultText = 'Для замены <span class="source_value">' + weightCalc + ' гр</span> ' 
                         + '<span class="product_background">' + textSelectFirst + '</span>' 
-                        + '<br>вам необходимо <span class="target_value">' + resultValue + ' гр</span> ' + '<span class="product_background">' + textSelectSecond + '</span>';
+                        + '<br>вам необходимо <span class="target_value">' + resultValue + ' гр</span> '
+                        + '<span class="product_background">' + textSelectSecond + '</span>';
 
                 $(".change_calculator").hide();
                 $("#new_result_button").show();
@@ -299,8 +295,6 @@
               }
             }
     
-    
-    
             function chooseProduct() {
                 var idProduct = this.id;
                 
@@ -336,7 +330,6 @@
             $("#new_result_button").click(calculateNew);
         });
 
-        // hello!
     </script>
 
 
