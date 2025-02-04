@@ -16,7 +16,7 @@ body {
    padding-right: 0px;
    padding-bottom: 2rem;
    background-color: #fff;
-   
+   letter-spacing: -0.02em;
    font-family: "Inter", Calibri, Tahoma, sans-serif;
 }
 
@@ -135,6 +135,7 @@ hr.between_h2_and_h3 {
     width: 85%;
     text-align: center;
     min-height: 6rem;
+    line-height: 0.95;  
 }
 
 .calculator_label p {
