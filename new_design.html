@@ -140,9 +140,7 @@
             };
 
             $("#result_button").click(calculate);
-        });
-
-        $(function () {
+       
             
             const types = [ 'meat', 'seafood', 'cereal', 'milk', 'cheese' ];
             
@@ -278,6 +276,7 @@
                 option.value = value[0];
                 
                 option.setAttribute( "data-dative", value[1] );
+                
                 selectElement.appendChild(option);
               }
             }
@@ -316,6 +315,27 @@
                 $(".calculator_result_text").empty();
                 $(".calculator_result").hide();
             };
+            
+            $('#source_select, #target_select').on('change', function(){
+                
+               var $button = $("#result_button");
+               
+               const target_value = $( "#source_select option:selected" ).text();
+               const source_value = $( "#target_select option:selected" ).text();
+               
+               if ( target_value == source_value ) { // disable button
+                    $button.css('background-color', '#666')
+                            .css('cursor', 'not-allowed')
+                            .css('color', '#777')
+                            .off( "click" );
+               }
+               else { // enable button
+                   $button.css('background-color', '#6E1212')
+                            .css('cursor', 'pointer')
+                            .css('color', '#fff')
+                            .on( 'click', calculate );
+               }
+            });
             
             $("#new_result_button").click(calculateNew);
             
