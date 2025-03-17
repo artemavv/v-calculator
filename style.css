@@ -242,6 +242,13 @@ hr.between_h2_and_h3 {
     width: 60px;
 }
 
+
+/* Select 2 tweak*/
+
+.select2-results__option--selectable {
+  font-size: 0.8em;
+}
+
 /* Tweaks for smaller screens */
 
 @media screen and (max-width:620px) {

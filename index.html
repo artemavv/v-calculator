@@ -34,7 +34,7 @@
                     
                     <div class="calculator_block">
                         <div class="food_type" id="seafood"
-                            data-label-1="Выберите морепродукт, указанный в рецепте и укажите вес в гр."
+                            data-label-1="Выберите продукт, указанный в рецепте и укажите вес в гр."
                             data-label-2="Выберите морепродукт, на который хотите поменять"></div>
                         <div>Рыба</div>
                     </div>
@@ -49,16 +49,16 @@
                     
                     <div class="calculator_block">
                         <div class="food_type" id="milk"
-                            data-label-1="Выберите молочный продукт, указанный в рецепте и укажите вес в гр."
+                            data-label-1="Выберите молочный продукт, указанный в рецепте и укажите вес/объём."
                             data-label-2="Выберите молочный продукт, на который хотите поменять"></div>
                         <div>Молочный<br>продукт</div>
                     </div>
 
                     <div class="calculator_block">                    
                         <div class="food_type" id="cheese_sauces_honey"
-                            data-label-1="Выберите продукт, указанный в рецепте и укажите вес в гр."
+                            data-label-1="Выберите продукт, указанный в рецепте и укажите вес/объём."
                             data-label-2="Выберите продукт, на который хотите поменять"></div>
-                        <div>Сыры, соусы, мёд</div>
+                        <div>Сыры, соусы,<br>мёд</div>
                     </div>
                 </div>
                 
@@ -116,7 +116,7 @@
             ],
             seafood: [
                 [ "КУРИНОЕ ФИЛЕ", "КУРИНОГО ФИЛЕ", "chicken_to_seafood", 1 ],
-                [ "ТУНЕЦ", "ТУНЦА", "tuna_to_seafood", 1 ],
+                [ "ТУНЕЦ КОНСЕРВИРОВАННЫЙ", "ТУНЦА КОНСЕРВИРОВАННОГО", "tuna_to_seafood", 1 ],
             ],
             cereal: [
                 [ "ГРЕЧКА", "ГРЕЧКИ", "cereal_to_cereal", 1 ],
@@ -400,14 +400,14 @@
             
        
             
-            function getUnitName( key ) {
+            function getUnitName( unitCode ) {
                 
                 const units = {
                     1 : 'гр',
                     2 : 'мл'
                 };
                 
-                return units[key];
+                return units[unitCode];
             }
             
             // Updates select options (list of source foods)
@@ -417,6 +417,8 @@
 
               // Clear existing options
               selectElement.innerHTML = "";
+              
+              let newSelectedValue = '';
 
               // Populate the select element with new options from the JSON data
               for (const [key, value] of Object.entries( data )) {
@@ -425,11 +427,17 @@
                 option.textContent = value[0];
                 option.value = value[2]; // key for the list of possible replacement options in 
                 
+                if ( ! newSelectedValue ) {
+                    newSelectedValue = value[2]; // save the new selected value
+                }
+                
                 option.setAttribute( "data-dative", value[1] );
                 option.setAttribute( "data-unit", getUnitName(value[3]) );
                 
                 selectElement.appendChild(option);
               }
+              
+              updateWeightPlaceholder( newSelectedValue );
             }
             
             // Updates select options (list of replacement food)
@@ -442,6 +450,7 @@
 
               // Populate the select element with new options from the JSON data
               for (const [key, value] of Object.entries( foodList )) {
+                  
                 const option = document.createElement("option");
                 option.textContent = value[0];
                 option.value = value[2]; // amount of calories per 100 grams of food
@@ -451,6 +460,8 @@
                 
                 selectElement.appendChild(option);
               }
+              
+              
             }
             
             // Function to cleat dropdown options
@@ -509,12 +520,6 @@
                 const caloriesSource = parseFloat(valueFirst);
                 const caloriesReplacement = parseFloat(valueSecond);
                 
-                console.log("calculate");
-                console.log([valueFirst,valueSecond]);
-                console.log([caloriesSource,caloriesReplacement]);
-                console.log([unitFirst,unitFirst]);
-                
-                
                 var weightSource = parseFloat($("#select_weight").val()); // how many grams of food to replace
                 
                 if ( ! weightSource ) {
@@ -554,6 +559,32 @@
                 currentFoodKey = this.value;
                 updateReplacementOptions( 'target_select' , replacementOptions[currentFoodKey] );
             });
+            
+            
+            function getUnitCode(selectValue) {
+                for (let category in sourceOptions) {
+                    for (let item of sourceOptions[category]) {
+                        if (item[2] === selectValue) {
+                            return item[3]; // Return the fourth value if found
+                        }
+                    }
+                }
+                return 1; // Return default if not found
+            }
+            
+            function changeSelectHandler() {
+                updateWeightPlaceholder(this.value);
+            }
+            
+            function updateWeightPlaceholder( selectValue ) {
+                let unitCode = getUnitCode(selectValue);
+                let unitName = getUnitName(unitCode);
+                
+                $("#select_weight").attr( 'placeholder', "0 " + unitName + ".");
+            }
+            
+            // Update units name in the input placeholder when source is changed
+            $('#source_select').on('change', changeSelectHandler);
             
             // Disable calculations when same values are selected
             $('#source_select, #target_select').on('change', function(){
