@@ -46,7 +46,7 @@ select {
     border-radius: 6px;
 }
 
-.calculator_type_main {
+.food_type_main {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-evenly;
@@ -58,7 +58,7 @@ select {
   padding: 10px;
 }
 
-.calculator_type {
+.food_type {
     height: 100px;
     width: 100px;
     border: 1px solid #6e1212;
@@ -91,7 +91,7 @@ select {
     background-image: url(img2025/milk.png);
 }
 
-#cheese {
+#cheese_sauces_honey {
     background-image: url(img2025/cheese.png);
 }
 
