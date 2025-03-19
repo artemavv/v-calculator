@@ -9,11 +9,86 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     
-   
+      
+    <script type="text/javascript">
+        // Added to restrict access for the March subscription
+
+        // Function to check the URL and redirect if necessary
+        function checkAndRedirect() {
+            // Define the URLs
+            const oldURL = "https://voitenkocalc.ru/";
+            const oldURL2 = "http://voitenkocalc.ru/";
+
+            const paymentURL = "https://web.tribute.tg/l/pH";
+
+            // Get the current URL
+            const currentURL = window.location.href;
+
+
+            function getUrlParameters() {
+                var prmstr = window.location.search.substr(1);
+                return prmstr != null && prmstr != "" ? transformToAssocArray(prmstr) : {};
+            }
+
+            function transformToAssocArray( prmstr ) {
+                var params = {};
+                var prmarr = prmstr.split("&");
+                for ( var i = 0; i < prmarr.length; i++) {
+                    var tmparr = prmarr[i].split("=");
+                    params[tmparr[0]] = tmparr[1];
+                }
+                return params;
+            }
+
+            var params = getUrlParameters();
+
+            let delay = params.delay ? params.delay : 3000;
+
+
+            // Check if the current URL is the old URL
+
+            if ( currentURL.startsWith(oldURL) || currentURL.startsWith(oldURL2) ) {
+                // Hide the calculator
+                document.getElementById("calculator_body").style.display = "none";
+
+                // Show payment notice
+                document.getElementById("payment_notice").style.display = "block";
+
+                // Set a timeout to redirect to the first URL after 3 seconds
+                setTimeout(function() {
+
+                    // Redirect to the payment page 
+                    window.location.href = paymentURL;
+
+                }, delay); 
+             
+            }
+            else {
+
+                // Show the calculator
+                document.getElementById("calculator_body").style.display = "block";
+            }
+        }
+
+        // Call the function when the page loads
+        window.onload = checkAndRedirect;
+    </script>
 </head>
 
 <body>
-    <div>
+    <div id="payment_notice" style="display: none;">
+        <div style="max-width: 600px;
+        margin: 5em auto;
+        padding: 2em;
+        background-color: #fdfdff;
+        border-radius: 0.5em;
+        box-shadow: 2px 3px 7px 2px rgba(0, 0, 0, 0.02);">
+            <h1>Просим оплатить подписку для продолжения доступа к калькулятору</h1>
+            <p>В марте начинается новая сессия от нутрициолога Екатерины Войтенко! Не упустите возможность присоединиться, количество мест ограничено</p>
+            <p><a href="https://web.tribute.tg/l/pH">Оплата подписки</a></p>
+        </div>
+    </div>
+    <div id="calculator_body" style="display: none;">
         <div class="change_calculator_block">
             <h2 class="calculator_h2">Калькулятор замен продуктов</h2>
             <hr class="between_h2_and_h3" />
